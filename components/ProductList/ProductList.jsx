@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { Card, ColumnSelector, Sidebar } from "@/components";
-import { LoaderCircle } from 'lucide-react';
+import { Card, ColumnSelector, Loader, Sidebar } from "@/components";
 
 export function ProductList({ initialProducts, brands, categories, discountPercentages }) {
     const [products, setProducts] = useState(initialProducts);
@@ -83,11 +82,11 @@ export function ProductList({ initialProducts, brands, categories, discountPerce
         });
     };
     if (!isClient) {
-        return <LoaderCircle />; // or a loading spinner
+        return <Loader/>;
     }
 
     return (
-        <div className="flex flex-col md:flex-row gap-8 lg:min-w-[1200px]">
+        <div className="flex flex-col lg:flex-row gap-8 xl:min-w-[1200px] max-lg:w-11/12 max-md:mt-16">
             <Sidebar
                 handleBrandChange={handleBrandChange}
                 brands={brands}
@@ -99,7 +98,7 @@ export function ProductList({ initialProducts, brands, categories, discountPerce
                 discountPercentages={discountPercentages}
                 selectedDiscounts={selectedDiscounts}
             />
-            <div className="flex-grow">
+            <div className="flex-grow xl:min-w-[1020px]">
                 <ColumnSelector columnCount={columnCount} setColumnCount={setColumnCount} />
                 <Card products={filteredProducts} columnCount={columnCount} />
             </div>

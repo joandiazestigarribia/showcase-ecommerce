@@ -10,7 +10,8 @@ module.exports = {
       colors: {
         "primary-violet": "#100217E5",
         "primary-black": "#030B1C",
-        "primary-gray": "#E4E8EE"
+        "primary-gray": "#E4E8EE",
+        "primary-white": "#FAFAFA"
       },
       screens: {  
         'max-md': { 'max': '767px' },

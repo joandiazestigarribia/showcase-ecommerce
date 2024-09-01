@@ -13,9 +13,9 @@ const Card = ({ products, columnCount }) => {
   };
 
   return (
-    <div className={`grid ${getGridClass()} gap-4`}>
+    <div className={`grid ${getGridClass()} gap-4 lg:justify-items-center`}>
       {products.map((item) => (
-        <div key={item.id} className="mb-4 max-w-72 w-full">
+        <div key={item.id} className="mb-4 lg:max-w-72 w-full">
           <Image
             src={item.thumbnail}
             alt={item.title}

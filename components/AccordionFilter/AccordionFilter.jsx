@@ -7,7 +7,7 @@ const AccordionFilter = ({ title, children }) => {
     const [isOpen, setIsOpen] = useState(true);
 
     return (
-        <div className="mb-4">
+        <div className="mb-4 max-lg:hidden">
             <button
                 className="flex justify-between items-center w-full py-2 px-4 bg-primary-gray hover:bg-gray-300 transition-colors"
                 onClick={() => setIsOpen(!isOpen)}

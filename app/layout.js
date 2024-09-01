@@ -6,7 +6,7 @@ const chivo = Chivo({ subsets: ["latin"], weight: ["400", "900"] });
 
 export const metadata = {
   title: "E-Commerce",
-  description: "By Joan Diaz",
+  description: "By Joan Diaz Estigarribia",
 };
 
 export default function RootLayout({ children }) {
