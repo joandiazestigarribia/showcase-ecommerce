@@ -12,6 +12,10 @@ module.exports = {
         "primary-black": "#030B1C",
         "primary-gray": "#E4E8EE"
       },
+      screens: {  
+        'max-md': { 'max': '767px' },
+        'max-lg': {'max': '1023px'}  
+      }
     },
   },
   plugins: [],

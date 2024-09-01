@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { Card, Sidebar } from "@/components";
+import { Card, ColumnSelector, Sidebar } from "@/components";
+import { LoaderCircle } from 'lucide-react';
 
 export function ProductList({ initialProducts, brands, categories, discountPercentages }) {
     const [products, setProducts] = useState(initialProducts);
@@ -9,6 +10,25 @@ export function ProductList({ initialProducts, brands, categories, discountPerce
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedBrands, setSelectedBrands] = useState([]);
     const [selectedDiscounts, setSelectedDiscounts] = useState([]);
+    const [columnCount, setColumnCount] = useState(2);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+        const updateColumnCount = () => {
+            if (window.innerWidth < 768) {
+                setColumnCount(1);
+            } else if (window.innerWidth >= 1024) {
+                setColumnCount(4);
+            } else {
+                setColumnCount(3);
+            }
+        };
+
+        updateColumnCount();
+        window.addEventListener('resize', updateColumnCount);
+        return () => window.removeEventListener('resize', updateColumnCount);
+    }, []);
 
     useEffect(() => {
         let filtered = products;
@@ -62,9 +82,12 @@ export function ProductList({ initialProducts, brands, categories, discountPerce
             }
         });
     };
+    if (!isClient) {
+        return <LoaderCircle />; // or a loading spinner
+    }
 
     return (
-        <div className="flex gap-8 min-w-[1200px]">
+        <div className="flex flex-col md:flex-row gap-8 lg:min-w-[1200px]">
             <Sidebar
                 handleBrandChange={handleBrandChange}
                 brands={brands}
@@ -76,7 +99,10 @@ export function ProductList({ initialProducts, brands, categories, discountPerce
                 discountPercentages={discountPercentages}
                 selectedDiscounts={selectedDiscounts}
             />
-            <Card products={filteredProducts} />
+            <div className="flex-grow">
+                <ColumnSelector columnCount={columnCount} setColumnCount={setColumnCount} />
+                <Card products={filteredProducts} columnCount={columnCount} />
+            </div>
         </div>
     );
 }

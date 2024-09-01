@@ -1,28 +1,27 @@
 import Input from "../ui/Input";
 
 function Category({ handleCategoryChange, categories, selectedCategories = [] }) {
+    const sortedCategories = [...categories].sort((a, b) => a.localeCompare(b));
+
     return (
-        <div>
-            <h2 className="sidebar-title">Categoria</h2>
-            <div className="sidebar-subTitle">
+        <div className="sidebar-subTitle">
+            <Input
+                handleChange={() => handleCategoryChange('')}
+                value=""
+                title="Todas las categorías"
+                name="test"
+                checked={selectedCategories.length === 0}
+            />
+            {sortedCategories.map((category) => (
                 <Input
-                    handleChange={() => handleCategoryChange('')}
-                    value=""
-                    title="Todas las categorías"
+                    key={category}
+                    handleChange={() => handleCategoryChange(category)}
+                    value={category}
+                    title={category}
                     name="test"
-                    checked={selectedCategories.length === 0}
+                    checked={selectedCategories.includes(category)}
                 />
-                {categories.map((category) => (
-                    <Input
-                        key={category}
-                        handleChange={() => handleCategoryChange(category)}
-                        value={category}
-                        title={category}
-                        name="test"
-                        checked={selectedCategories.includes(category)}
-                    />
-                ))}
-            </div>
+            ))}
         </div>
     );
 }

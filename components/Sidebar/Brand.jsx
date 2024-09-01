@@ -1,28 +1,27 @@
 import Input from "../ui/Input";
 
 function Brand({ handleBrandChange, brands, selectedBrands = [] }) {
+    const sortedBrands = [...brands].sort((a, b) => a.localeCompare(b));
+
     return (
-        <div>
-            <h2 className="sidebar-title">Marca</h2>
-            <div className="sidebar-subTitle">
+        <div className="sidebar-subTitle">
+            <Input
+                handleChange={() => handleBrandChange('')}
+                value=""
+                title="Todas las marcas"
+                name="test"
+                checked={selectedBrands.length === 0}
+            />
+            {sortedBrands.map((brand) => (
                 <Input
-                    handleChange={() => handleBrandChange('')}
-                    value=""
-                    title="Todas las marcas"
+                    key={brand}
+                    handleChange={() => handleBrandChange(brand)}
+                    value={brand}
+                    title={brand}
                     name="test"
-                    checked={selectedBrands.length === 0}
+                    checked={selectedBrands.includes(brand)}
                 />
-                {brands.map((brand) => (
-                    <Input
-                        key={brand}
-                        handleChange={() => handleBrandChange(brand)}
-                        value={brand}
-                        title={brand}
-                        name="test"
-                        checked={selectedBrands.includes(brand)}
-                    />
-                ))}
-            </div>
+            ))}
         </div>
     );
 }
