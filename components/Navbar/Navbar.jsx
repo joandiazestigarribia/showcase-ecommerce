@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <>
       <div>
-        <header className='bg-white border-b border-gray-200 bg-primary-violet'>
+        <header className='border-b border-gray-200 bg-primary-violet'>
           <div className='mx-auto flex justify-between py-5 px-8 items-center'>
             <div className='w-full flex justify-center'>
               <Link href='/'>

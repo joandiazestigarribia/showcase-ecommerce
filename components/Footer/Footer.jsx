@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div className='hidden md:block bg-primary-violet py-6'>
+        <div className='bg-primary-violet py-6'>
             <ul className='flex items-center text-lg justify-center text-white'>
                 <Link href='/'>
                     <li className='mr-20 hover:text-gray-900 cursor-pointer'>Ayuda</li>

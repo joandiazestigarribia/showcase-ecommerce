@@ -3,5 +3,13 @@
 @tailwind utilities;
 
 :root {
-  @apply bg-gray-400
+  @apply bg-gray-100 text-primary-black
+}
+
+.sidebar-title {
+  @apply bg-primary-gray font-black text-primary-black py-1 pl-3 mt-5 mb-1
+}
+
+.sidebar-subTitle {
+  @apply flex flex-col
 }
